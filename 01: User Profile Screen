@@ -1,0 +1,146 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProfilePage(),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+
+  final String name = "Tanisha Bhujbal";
+  final String bio = "B.Tech CSE Student | Learning Flutter 🚀";
+  final String email = "tanisha@email.com";
+  final String phone = "+91 9876543210";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("My Profile"),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+
+            _profileImage(),
+
+            SizedBox(height: 12),
+
+            _nameSection(),
+
+            SizedBox(height: 6),
+
+            _bioSection(),
+
+            SizedBox(height: 20),
+
+            _detailsSection(),
+
+            Spacer(),
+
+            _followButton(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _profileImage() {
+    return CircleAvatar(
+      radius: 55,
+      backgroundColor: Colors.grey[300],
+      child: Icon(
+        Icons.person,
+        size: 60,
+        color: Colors.grey[700],
+      ),
+    );
+  }
+
+  Widget _nameSection() {
+    return Text(
+      name,
+      style: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
+  Widget _bioSection() {
+    return Text(
+      bio,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: Colors.grey[700],
+        fontSize: 15,
+      ),
+    );
+  }
+
+  Widget _detailsSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+
+        Text(
+          "Details",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
+        SizedBox(height: 10),
+
+        Container(
+          padding: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey.shade300),
+          ),
+          child: Column(
+            children: [
+              _detailRow(Icons.email, email),
+              SizedBox(height: 10),
+              _detailRow(Icons.phone, phone),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _detailRow(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(icon, size: 20),
+        SizedBox(width: 10),
+        Text(text),
+      ],
+    );
+  }
+
+  Widget _followButton() {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          // UI only
+        },
+        child: Text("Follow"),
+      ),
+    );
+  }
+}
